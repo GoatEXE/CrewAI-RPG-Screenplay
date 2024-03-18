@@ -4,6 +4,7 @@
 #Dependencies
 #############
 
+
 # Pythin 3.11 used
 # pip install crewai
 # pip install 'crewai[tools]'
@@ -117,18 +118,25 @@ mardook_pann = Agent(
 
 
 job_for_a_soul = Task(
-    description="""Create a screenplay under this circumstance: Your party has worked it way through the secret lair of the Candlekeep assassin's guild in an attempt to recover a member
-        of the party, Leonitus. The party meets Malagan, the leader of the assassin's guild who offers the release of their friend as long as you bind your soul to his and complete
-        jobs for him until you pay off your debt. As long as he lives, the party lives live too.""",
-    expected_output="You should create this screenplay in a way that clearly labels who is talking or acting. This should be long enough to convey a plot, but short enough to not loose attention",
+    description="""Create a screenplay under this circumstance: 
+      Your party has worked it's way through the secret lair of the Candlekeep assassin's guild in an attempt to recover a member of the party, Leonitus.
+      The party meets Malagan, the leader of the assassin's guild.
+      Malagan offers the release of their Leonitus as long as each member binds their soul to his and complete jobs for him.
+      This lasts until the debt coin value of their debt is paid. 
+      If Malagan dies after they are bound, Malagan all all who are bound to him die too via the magic of that bond.""",
+    expected_output="""You should create this screenplay in a way that clearly labels who is talking or acting. 
+      This should be long enough to convey a plot, but short enough to not loose attention.
+      If the tasked writer had something to contribute, add it to the screenplay. 
+      Provide the completed screenplay as a final result.""",
     agent=gm,
 )
 
 player_thoughts = Task(
-    description="Act out your portion of a screen play. Do not act for someone else. If you feel that your character would do nothing in this circumstance, then do nothing.",
+    description="""Act out your portion of a screen play in accordance to the character you represent.
+      Do not act for someone else. If you feel that your character would do nothing in this circumstance, then do nothing.""",
     expected_output="""In the format of a screen play, provide your character's name followed by a colon. 
       After the colon, include your characters actions, speech, or thoughts if any.
-      If your character has no thoughts, speech, or actions, then do nothing.""",
+      If your character has no thoughts, speech, or actions, then add nothing to the screenplay.""",
 )
 
 
@@ -154,7 +162,7 @@ party = Crew(
 result = party.kickoff()
 print(result)
 
-#Create a log of the task in the working directory
+#Create a log of the task result in the working directory
 with open("result.txt", "w") as f:
     f.write(result)
 
