@@ -4,7 +4,7 @@
 #Dependencies
 #############
 
-
+# Pythin 3.11 used
 # pip install crewai
 # pip install 'crewai[tools]'
 
